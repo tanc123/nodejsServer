@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+</head>
+<body>
+<h2>test server1</h2>
+
+<form action="http://127.0.0.1:8081/process_get" method="GET">
+First Name: <input type="text" name="first_name">  <br>
+ 
+Last Name: <input type="text" name="last_name">
+<input type="submit" value="Submit">
+</form>
+</body>
+<script type="text/javascript" src="/js/jquery-2.1.3.min.js"></script>
+<script>
+// fetch('/show').then(function(response) {
+//   return response.json();
+// }).then(function(data) {
+//   console.log(data);
+// }).catch(function(e) {
+//   console.log("Oops, error");
+// });
+
+// $(document).ready(function(){
+// 	$.ajax({
+// 		async : true,
+// 		url : "/show",
+// 		type : "POST",
+//                 dataType : "json", // 返回的数据类型，设置为JSONP方式
+//                 data : {
+//                 }, 
+//                 success: function(response, status, xhr){
+//                 	console.log('状态为：' + status + ',状态是：' + xhr.statusText);
+//                 	console.log(response);
+//                 }
+//             });
+// });
+
+
+$(document).ready(function(){
+	$.ajax({
+		async : true,
+		url : "/show",
+		type : "get",
+                dataType : "jsonp", // 返回的数据类型，设置为JSONP方式
+                jsonp : 'callback', //指定一个查询参数名称来覆盖默认的 jsonp 回调参数名 callback
+                jsonpCallback: 'callback', //设置回调函数名
+                data : {
+                	q : "javascript", 
+                	count : 1
+                }, 
+                success: function(response, status, xhr){
+                	console.log('状态为：' + status + ',状态是：' + xhr.statusText);
+                	console.log(response);
+                }
+            });
+});
+
+</script>
+</html>
